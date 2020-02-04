@@ -1,0 +1,21 @@
+node {
+      stage('Preparation') { // for display purposes
+      git 'https://github.com/rjerrin/spring-boot-maven-example-helloworld'
+      }
+
+   stage('Build') {
+             sh 'sudo docker build  --no-cache -t  app:latest .'      
+
+         }
+
+    stage ('Push') {
+        sh  'sudo docker tag app:latest localhost:5000/app:latest'
+        sh  'sudo docker push localhost:5000/app:latest '
+
+  }
+
+    
+
+}
+
+   
