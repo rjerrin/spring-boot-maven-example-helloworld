@@ -5,7 +5,6 @@ node {
 
    stage('Build') {
              sh 'sudo docker build  --no-cache -t  app:latest .'      
-
          }
 
     stage ('Push') {
@@ -13,9 +12,8 @@ node {
         sh  'sudo docker push localhost:5000/app:latest '
 
   }
-
-    
-
+     stage ('deploy')
+     sh  "ssh jery@kubernetes  kubectl -f https://raw.githubusercontent.com/rjerrin/spring-boot-maven-example-helloworld/master/appnew.yaml" "
 }
 
    
